@@ -1,4 +1,4 @@
-PYTHON = python3
+PYTHON = python3 #For MacOS default if on any other OS can be just python
 VENV_DIR = .venv
 
 venv:
