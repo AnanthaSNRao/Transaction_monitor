@@ -5,3 +5,6 @@ __pycache__/
 *.pyd
 
 *.csv
+
+*.log
+anomaly_detection_summary.txt

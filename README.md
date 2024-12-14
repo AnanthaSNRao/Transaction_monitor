@@ -41,6 +41,15 @@ Implement the subsystem and flag suspicious transactions as the output
 - |- requirements.txt # conatins all the py libraries
 - |- makefile
 
+# Running the project
+Just execute the following command
+- make run
+
+# Files Generated
+- transaction_list_with_fraud.csv is test file generated.
+- anomaly_detection_summary.txt will provide a breif overview.
+- detailed_anomaly_detection.log will provide a detailed view each transaction which failed according each rules mentioned above.
+
 # Future Considerations
 -  Location: obtained from ethier time of tranaction with timezone or as a seperate informtion can be used to detect fruad transactions.
 - Streaming Data: By using stream processing tools like apache filnk along with low latency look up database.
