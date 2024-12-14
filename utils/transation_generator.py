@@ -98,3 +98,6 @@ def generate_transaction_csv_with_fraudulent_data(file_path, num_transactions=50
     df = pd.DataFrame(all_transactions)
     df.to_csv(file_path, index=False)
 
+# Generate the CSV
+generate_transaction_csv_with_fraudulent_data("transaction_list_with_fraud.csv", num_transactions=500, num_fraudulent=50)
+

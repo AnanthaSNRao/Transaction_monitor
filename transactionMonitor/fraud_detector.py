@@ -118,7 +118,7 @@ def analyze_transactions(file_path):
     transactions_totaling_threshold = detect_transactions_totaling_threshold(df)
 
     # Write results to a text file
-    with open("../anomaly_detection_summary.txt", "w") as file:
+    with open("anomaly_detection_summary.txt", "w") as file:
         file.write("High-Value Transactions:\n")
         for user_id, group in high_value.groupby('user_id'):
             file.write(f"User {user_id}: {len(group)} transactions flagged\n")
@@ -154,7 +154,7 @@ def analyze_transactions(file_path):
             file.write("No transactions flagged for this rule.\n")
 
 
-    with open("../detailed_anomaly_detection.log", "a+") as log:
+    with open("detailed_anomaly_detection.log", "a+") as log:
         log.write("High-Value Transactions:\n")
         log.write(high_value.to_string())
         log.write("\n---------------------------------------------------------------------------------------\n")

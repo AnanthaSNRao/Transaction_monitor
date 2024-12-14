@@ -9,8 +9,10 @@ install: venv
 	$(VENV_DIR)/bin/pip install -r requirements.txt
 	@echo "Dependencies installed."
 
+generate: install
+	$(VENV_DIR)/bin/python ./utils/transation_generator.py
 
-run: install
+run: generate
 	@echo "Running main.py..."
 	$(VENV_DIR)/bin/python main.py
 
@@ -20,8 +22,8 @@ freeze:
 
 clean:
 	@echo "Removing virtual environment..."
-	rm -rf $(VENV_DIR)
-	rm -rf *.txt *.csv
+	# rm -rf $(VENV_DIR)
+	rm -rf anomaly_detection_summary.txt detailed_anomaly_detection.log *.csv
 	@echo "Virtual environment removed."
 
-.PHONY: [venv, install, run, clean, freeze]
+.PHONY: [venv, install, run, clean, freeze, generate]
