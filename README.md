@@ -9,32 +9,32 @@ Implement the subsystem and flag suspicious transactions as the output
 
 **Rules considerd to detect fraudlent transactions**
 
-- Rule 1: to detect high-value transactions. This to flag any transctions which abnormaly high amount of transaction. Cases considered:
+- Rule 1: to detect high-value transactions. This is to flag any transactions which abnormally high amount of transactions. Cases considered:
     - transactions above the 5000.
     - users with first transactions greater than 1000.
-    - Z-score based outlier detection. A statistical method used to find out abnomal values in a series of values present.
+    - Z-score-based outlier detection. A statistical method is used to find out abnormal values in a series of values present.
 
-- Rule 2: to detect multiple transactions in a short time span. Indentifing the users with more than 3 transactions in 5 mins.
+- Rule 2: to detect multiple transactions in a short time span. Identifying the users with more than 3 transactions in 5 mins.
 
-- Rule 3: to detect multiple transactions at the same merchant. Indentifing the users with more than 7 transactions in span of 2 days with same marchant. 
-    - This rule will helps in detecting any malious merchant with users' stored credit card or wallet data misusing user data.
+- Rule 3: to detect multiple transactions at the same merchant. Identifying the users with more than 7 transactions in the span of 2 days with the same merchant. 
+    - This rule will help in detecting any malicious merchant with users' stored credit card or wallet data misusing user data.
 
-- Rule 4: to detect same amounts spent in a short time span. This is to identify users with same amount spent in more than 3 transcations with in 30 minutes.
+- Rule 4: to detect the same amounts spent in a short time span. This is to identify users with the same amount spent in more than 3 transactions within 30 minutes.
 
-- Rule 5: to detect transactions with misspelled merchant names. Helps to detect malious/pishing websites using user details.
+- Rule 5: to detect transactions with misspelled merchant names. Helps to detect malicious/phishing websites using user details.
 
-- Rule 6: detect transactions adding up to $15,000 within 24 hours. Helps to flag a users activity with more 15,000 spending with span of 24 hrs.
+- Rule 6: detect transactions adding up to $15,000 within 24 hours. Helps to flag a user’s activity with more than 15,000 spending within a span of 24 hrs.
 
 
-**Note: All the above contants values are assumtions made for the sake of problem statment.**
-- Also all the constants are directly used in the function should be used from a constants file or config file.
+**Note: All the above constant values are assumptions made for the sake of the problem statement.**
+- Also, all the constants directly used in the function should be used from a constants file or config file.
 
 
 # Project Structure
 
-- |- .vevn # for vitural python evnironment
+- |- .vevn # for virtual python environment
 - |- transactionMonitor 
-    - |-fraud_detector.py # contains all the core logic to flagging transactions
+    - |-fraud_detector.py # contains all the core logic for flagging transactions
 - |- utils
     - |- transcation_generator.py # generates csv file needed.
 - |- main.py
@@ -46,19 +46,19 @@ Just execute the following command
 - make run
 
 # Files Generated
-- transaction_list_with_fraud.csv is test file generated.
-- anomaly_detection_summary.txt will provide a breif overview.
-- detailed_anomaly_detection.log will provide a detailed view each transaction which failed according each rules mentioned above.
+- transaction_list_with_fraud.csv is a test file generated.
+- anomaly_detection_summary.txt will provide a brief overview.
+- detailed_anomaly_detection.log will provide a detailed view of each transaction that failed according to each rule mentioned above.
 
 # Minor improvements
-- Visual repesentation of fraud detection for each rule.
+- Visual representation of fraud detection for each rule.
 - Unit testing
 - Have precedence of Rules: And remove duplicate flagged transactions based on precedence
 - Have error/flag codes for each rule.
 
 # Future Considerations
--  Location: obtained from ethier time of tranaction with timezone or as a seperate informtion can be used to detect fruad transactions.
-- Streaming Data: By using stream processing tools like apache filnk along with low latency look up database.
-- Parallel Processing: can use sharding technique to group a cluster of users and store & process them in seperatly.
-- Using sophisticated statistical methods to tune the contants presented above: 
+-  Location: obtained from the time of transaction with timezone or as separate information that can be used to detect fraudulent transactions.
+- Streaming Data: By using stream processing tools like Apache filing along with low latency, look up the databases.
+- Parallel Processing: can use the sharding technique to group a cluster of users and store & process them separately.
+- Using sophisticated statistical methods to tune the constants presented above: 
     - Like using Hypothesis Testing to see if the test parameters.
