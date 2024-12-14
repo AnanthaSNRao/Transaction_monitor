@@ -1,13 +1,13 @@
 # Transaction Monitor
 
-Problem statment
+**Problem statment**
 
 Build a transaction monitoring subsystem 
 Input to the subsystem will be transaction list csv file (max 10k rows) with following fields - user ID, timestamp, merchant name, amount 
 Propose 5 fraud related transaction monitoring rules + a short explanation on why 
 Implement the subsystem and flag suspicious transactions as the output
 
-Rules considerd to detect fraudlent transactions
+**Rules considerd to detect fraudlent transactions**
 
 - Rule 1: to detect high-value transactions. This to flag any transctions which abnormaly high amount of transaction. Cases considered:
     - transactions above the 5000.
@@ -27,6 +27,7 @@ Rules considerd to detect fraudlent transactions
 
 
 **Note: All the above contants values are assumtions made for the sake of problem statment.**
+- Also all the constants are directly used in the function should be used from a constants file or config file.
 
 
 # Project Structure
@@ -39,3 +40,10 @@ Rules considerd to detect fraudlent transactions
 - |- main.py
 - |- requirements.txt # conatins all the py libraries
 - |- makefile
+
+# Future Considerations
+-  Location: obtained from ethier time of tranaction with timezone or as a seperate informtion can be used to detect fruad transactions.
+- Streaming Data: By using stream processing tools like apache filnk along with low latency look up database.
+- Parallel Processing: can use sharding technique to group a cluster of users and store & process them in seperatly.
+- Using sophisticated statistical methods to tune the contants presented above: 
+    - Like using Hypothesis Testing to see if the test parameters.
