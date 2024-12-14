@@ -17,7 +17,7 @@ Implement the subsystem and flag suspicious transactions as the output
 - Rule 2: to detect multiple transactions in a short time span. Indentifing the users with more than 3 transactions in 5 mins.
 
 - Rule 3: to detect multiple transactions at the same merchant. Indentifing the users with more than 7 transactions in span of 2 days with same marchant. 
-    - This rule will helps in detecting any malious merchant with users' stored credit card or wallet data misusing the user data.
+    - This rule will helps in detecting any malious merchant with users' stored credit card or wallet data misusing user data.
 
 - Rule 4: to detect same amounts spent in a short time span. This is to identify users with same amount spent in more than 3 transcations with in 30 minutes.
 
@@ -49,6 +49,12 @@ Just execute the following command
 - transaction_list_with_fraud.csv is test file generated.
 - anomaly_detection_summary.txt will provide a breif overview.
 - detailed_anomaly_detection.log will provide a detailed view each transaction which failed according each rules mentioned above.
+
+# Minor improvements
+- Visual repesentation of fraud detection for each rule.
+- Unit testing
+- Have precedence of Rules: And remove duplicate flagged transactions based on precedence
+- Have error/flag codes for each rule.
 
 # Future Considerations
 -  Location: obtained from ethier time of tranaction with timezone or as a seperate informtion can be used to detect fruad transactions.

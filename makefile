@@ -1,7 +1,13 @@
 PYTHON = python3 #For MacOS default if on any other OS can be just python
 VENV_DIR = .venv
 
-venv:
+clean:
+	@echo "Removing virtual environment..."
+	rm -rf $(VENV_DIR)
+	rm -rf anomaly_detection_summary.txt detailed_anomaly_detection.log *.csv
+	@echo "Virtual environment removed."
+	
+venv: clean
 	$(PYTHON) -m venv $(VENV_DIR)
 	@echo "Virtual environment created."
 
@@ -19,11 +25,5 @@ run: generate
 freeze:
 	@echo "adding all packages to requirements.txt"
 	$(VENV_DIR)/bin/pip freeze > requirements.txt
-
-clean:
-	@echo "Removing virtual environment..."
-	# rm -rf $(VENV_DIR)
-	rm -rf anomaly_detection_summary.txt detailed_anomaly_detection.log *.csv
-	@echo "Virtual environment removed."
 
 .PHONY: [venv, install, run, clean, freeze, generate]

@@ -110,45 +110,65 @@ def analyze_transactions(file_path):
     df = pd.read_csv(file_path)
 
     # Detect anomalies
-    high_value = detect_high_value_transactions(df)
     short_time_multiple = detect_multiple_transactions_short_time(df)
     same_merchant_multiple = detect_multiple_transactions_same_merchant(df)
     same_amount_short_time = detect_same_amount_short_time(df)
     misspelled_merchants = detect_misspelled_merchant_names(df)
     transactions_totaling_threshold = detect_transactions_totaling_threshold(df)
+    high_value = detect_high_value_transactions(df)
 
     # Write results to a text file
     with open("anomaly_detection_summary.txt", "w") as file:
         file.write("High-Value Transactions:\n")
-        for user_id, group in high_value.groupby('user_id'):
-            file.write(f"User {user_id}: {len(group)} transactions flagged\n")
-            file.write("\n")
+        if not high_value.empty:
+            for user_id, group in high_value.groupby('user_id'):
+                file.write(f"User {user_id}: {len(group)} transactions flagged in {min(group['timestamp'])} to {max(group['timestamp'])}\n")
+                file.write("\n")
+            file.write(f"{round(len(high_value) / len(df) * 100, 2)} % of transactions detected fraudlent with this rule \n")
+        else:
+             file.write("No transactions flagged for this rule.\n")
 
         file.write("\nMultiple Transactions in Short Time:\n")
-        for user_id, group in short_time_multiple.groupby('user_id'):
-            file.write(f"User {user_id}: {len(group)} transactions flagged\n")
-            file.write("\n")
+        if not short_time_multiple.empty:
+            for user_id, group in short_time_multiple.groupby('user_id'):
+                file.write(f"User {user_id}: {len(group)} transactions flagged in {min(group['timestamp'])} to {max(group['timestamp'])}\n")
+                file.write("\n")
+            file.write(f"{round(len(short_time_multiple) / len(df)* 100, 2)} % of transactions detected fraudlent with this rule \n")
+        else:
+             file.write("No transactions flagged for this rule.\n")
 
         file.write("\nMultiple Transactions at Same Merchant:\n")
-        for user_id, group in same_merchant_multiple.groupby('user_id'):
-            file.write(f"User {user_id}: {len(group)} transactions flagged\n")
-            file.write("\n")
+        if not same_merchant_multiple.empty:
+            for user_id, group in same_merchant_multiple.groupby('user_id'):
+                file.write(f"User {user_id}: {len(group)} transactions flagged in {min(group['timestamp'])} to {max(group['timestamp'])}\n")
+                file.write("\n")
+            file.write(f"{round(len(same_merchant_multiple) / len(df)* 100, 2)} % of transactions detected fraudlent with this rule \n")
+        else:
+             file.write("No transactions flagged for this rule.\n")
 
         file.write("\nSame Amount in Short Time:\n")
-        for user_id, group in same_amount_short_time.groupby('user_id'):
-            file.write(f"User {user_id}: {len(group)} transactions flagged\n")
-            file.write("\n")
+        if not same_amount_short_time.empty:
+            for user_id, group in same_amount_short_time.groupby('user_id'):
+                file.write(f"User {user_id}: {len(group)} transactions flagged in {min(group['timestamp'])} to {max(group['timestamp'])}\n")
+                file.write("\n")
+            file.write(f"{round(len(same_amount_short_time) / len(df)* 100, 2)} % of transactions detected fraudlent with this rule \n")
+        else:
+             file.write("No transactions flagged for this rule.\n")
 
         file.write("\nMisspelled Merchant Names:\n")
-        for user_id, group in misspelled_merchants.groupby('user_id'):
-            file.write(f"User {user_id}: {len(group)} transactions flagged\n")
-            file.write("\n")
+        if not misspelled_merchants.empty:
+            for user_id, group in misspelled_merchants.groupby('user_id'):
+                file.write(f"User {user_id}: {len(group)} transactions flagged in {min(group['timestamp'])} to {max(group['timestamp'])}\n")
+                file.write("\n")
+            file.write(f"{round(len(misspelled_merchants) / len(df)* 100, 2)} % of transactions detected fraudlent with this rule \n")
+        else:
+             file.write("No transactions flagged for this rule.\n")
 
         file.write("\nTransactions adding up to $10,000 within 24 hours:\n")
         if transactions_totaling_threshold:
             for data in transactions_totaling_threshold:
                 for user_id, group in data.groupby('user_id'):
-                    file.write(f"User {user_id}: {len(group)} transactions flagged\n")
+                    file.write(f"User {user_id}: {len(group)} transactions flagged in {min(group['timestamp'])} to {max(group['timestamp'])}\n")
                     file.write("\n")
         else:
             file.write("No transactions flagged for this rule.\n")
